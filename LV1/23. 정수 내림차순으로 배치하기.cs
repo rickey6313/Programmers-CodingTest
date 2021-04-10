@@ -1,38 +1,26 @@
 using System;
-using System.Collections.Generic;
 
 public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
-        List<int> temp = new List<int>();
-            
-        for (int i= 0; i < numbers.Length; i++)
-        {
-            for (int j = numbers.Length-1; i < j; j--)
-            {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
+    public long solution(long n) {
+        long answer = 0;
+        char[] arr = n.ToString().ToCharArray();            
+        Array.Sort(arr, (a,b) => (a > b) ? -1 : 1);
 
-                for(int k = 0; k < temp.Count; k++)
-                {
-                    if (temp[k] == sum)
-                        find = true;
-                }
+        answer = long.Parse(new string(arr));
+        Console.WriteLine(answer);
+        return answer;
+    }
+}
 
-                if(!find)
-                    temp.Add(sum);
+// 또는
 
-            }
-        }
-        temp.Sort();
-
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
-        {
-            answer[i] = temp[i];
-        }
-        
+public class Solution {
+    public long solution(long n) {
+        long answer = 0;
+        char[] a = n.ToString().ToCharArray();
+        System.Array.Sort(a);
+        System.Array.Reverse(a);
+        answer = System.Convert.ToInt64(new string(a));
         return answer;
     }
 }

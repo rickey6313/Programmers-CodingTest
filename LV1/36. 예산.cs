@@ -1,38 +1,34 @@
 using System;
-using System.Collections.Generic;
 
 public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
-        List<int> temp = new List<int>();
-            
-        for (int i= 0; i < numbers.Length; i++)
+    public int solution(int[] d, int budget) {
+        int answer = 0;
+        int count = 0;
+
+        Array.Sort(d);
+
+        for(int i = 0; i < d.Length; i++)
         {
-            for (int j = numbers.Length-1; i < j; j--)
+            if (d[i] > budget) continue;
+            int sum = d[i];
+            int tempCount = 1;
+
+            for (int j = 0; j < d.Length; j++)
             {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
+                if (i == j)
+                    continue;
 
-                for(int k = 0; k < temp.Count; k++)
-                {
-                    if (temp[k] == sum)
-                        find = true;
-                }
-
-                if(!find)
-                    temp.Add(sum);
+                sum += d[j];
+                if (sum <= budget)
+                    tempCount++;
+                else
+                    sum -= d[j];
 
             }
+            count = count > tempCount ? count : tempCount;
         }
-        temp.Sort();
 
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
-        {
-            answer[i] = temp[i];
-        }
-        
-        return answer;
+        Console.WriteLine(count);
+        return count;
     }
 }

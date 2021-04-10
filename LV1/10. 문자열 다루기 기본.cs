@@ -1,4 +1,3 @@
-```csharp
 public class Solution {
     public bool solution(string s) {        
         int check = 0;
@@ -12,11 +11,7 @@ public class Solution {
         return isLength && isNum;
     }
 }
-```
 
-모범 답안
-
-```csharp
 public class Solution {
     public bool solution(string s) {
             bool answer = false;
@@ -25,4 +20,3 @@ public class Solution {
             return answer;
     }
 }
-```

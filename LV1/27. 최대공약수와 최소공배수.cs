@@ -1,38 +1,29 @@
-using System;
-using System.Collections.Generic;
+유클리드 호제법
+https://ko.wikipedia.org/wiki/유클리드_호제법
 
 public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
-        List<int> temp = new List<int>();
-            
-        for (int i= 0; i < numbers.Length; i++)
+    public int[] solution(int n, int m) {
+        int[] answer = new int[2];
+
+        int a = n;
+        int b = m;
+
+        int gcd = 1;
+        int lcm = 1;
+        while (m != 0)
         {
-            for (int j = numbers.Length-1; i < j; j--)
-            {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
-
-                for(int k = 0; k < temp.Count; k++)
-                {
-                    if (temp[k] == sum)
-                        find = true;
-                }
-
-                if(!find)
-                    temp.Add(sum);
-
-            }
+            int r = n % m;
+            n = m;
+            m = r;
         }
-        temp.Sort();
 
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
-        {
-            answer[i] = temp[i];
-        }
-        
+        gcd = n;
+
+        lcm = gcd * (a / gcd) * (b / gcd);
+
+        answer[0] = gcd;
+        answer[1] = lcm;
+
         return answer;
     }
 }

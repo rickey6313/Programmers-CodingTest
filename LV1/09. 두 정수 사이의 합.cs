@@ -15,7 +15,7 @@ public class Solution {
     }
 }
 
-모범 답안
+//모범 답안
 
 public class Solution {
     public long solution(int a, int b) {

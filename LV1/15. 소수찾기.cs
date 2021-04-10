@@ -1,38 +1,32 @@
 using System;
-using System.Collections.Generic;
 
 public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
-        List<int> temp = new List<int>();
+    public int solution(int n) {
+        int answer = 0;
+
+        int[] arr = new int[n+1];
             
-        for (int i= 0; i < numbers.Length; i++)
+        for(int i = 2; i <= n; i++)
         {
-            for (int j = numbers.Length-1; i < j; j--)
+            arr[i] = i;
+        }
+
+        for (int i = 2; i <= n; i++)
+        {
+            if (arr[i] == 0)
+                continue;
+            for(int j = i+i; j <= n; j +=i)
             {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
-
-                for(int k = 0; k < temp.Count; k++)
-                {
-                    if (temp[k] == sum)
-                        find = true;
-                }
-
-                if(!find)
-                    temp.Add(sum);
-
+                arr[j] = 0;
             }
-        }
-        temp.Sort();
 
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
-        {
-            answer[i] = temp[i];
         }
-        
+
+        for(int i = 2; i <= n; i++)
+        {
+            if (arr[i] != 0)
+                answer++;
+        }
         return answer;
-    }
+    }    
 }

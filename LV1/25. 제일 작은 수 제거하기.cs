@@ -2,37 +2,21 @@ using System;
 using System.Collections.Generic;
 
 public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
-        List<int> temp = new List<int>();
+    public int[] solution(int[] arr) {
+        List<int> arrList = new List<int>(arr);
             
-        for (int i= 0; i < numbers.Length; i++)
-        {
-            for (int j = numbers.Length-1; i < j; j--)
-            {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
+        if (arr.Length == 1)
+            return new int[] { -1 };
+        int[] temp = new int[arr.Length];
+        arr.CopyTo(temp, 0);
+        Array.Sort(temp);
+        int findValue = Array.Find(arr, find => find == temp[0]);
 
-                for(int k = 0; k < temp.Count; k++)
-                {
-                    if (temp[k] == sum)
-                        find = true;
-                }
+        arrList.RemoveAll(find => find == findValue);
 
-                if(!find)
-                    temp.Add(sum);
+        if(arrList.Count == 0)
+            return new int[] { -1 };
 
-            }
-        }
-        temp.Sort();
-
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
-        {
-            answer[i] = temp[i];
-        }
-        
-        return answer;
+        return arrList.ToArray();
     }
 }

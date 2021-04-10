@@ -1,38 +1,18 @@
-using System;
-using System.Collections.Generic;
-
 public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
-        List<int> temp = new List<int>();
-            
-        for (int i= 0; i < numbers.Length; i++)
+    public string solution(string[] seoul) {
+        string answer = "";
+        int index = 0;
+        for(int i = 0; i < seoul.Length; i++)
         {
-            for (int j = numbers.Length-1; i < j; j--)
+            if(seoul[i].CompareTo("Kim") == 0)
             {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
-
-                for(int k = 0; k < temp.Count; k++)
-                {
-                    if (temp[k] == sum)
-                        find = true;
-                }
-
-                if(!find)
-                    temp.Add(sum);
-
+                index = i;
+                break;
             }
         }
-        temp.Sort();
-
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
-        {
-            answer[i] = temp[i];
-        }
-        
+        // Console.WriteLine("김서방은 "+ index +"에 있다");
+        answer = string.Format("김서방은 {0}에 있다", index);
         return answer;
+
     }
 }

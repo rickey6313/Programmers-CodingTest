@@ -1,38 +1,42 @@
 using System;
 using System.Collections.Generic;
 
-public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
+class Solution
+{
+    public int solution(int[] nums)
+    {
+        int answer = 0;
         List<int> temp = new List<int>();
-            
-        for (int i= 0; i < numbers.Length; i++)
+        for(int i = 0; i < nums.Length; i++)
         {
-            for (int j = numbers.Length-1; i < j; j--)
+            for(int j = i+1; j < nums.Length; j++)
             {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
-
-                for(int k = 0; k < temp.Count; k++)
+                for (int k = j + 1; k < nums.Length; k++)
                 {
-                    if (temp[k] == sum)
-                        find = true;
+                    answer = nums[i] + nums[j] + nums[k];                        
+                    temp.Add(answer);
+                    answer = 0;
                 }
-
-                if(!find)
-                    temp.Add(sum);
-
             }
         }
-        temp.Sort();
 
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
+        answer = 0;
+
+        for (int i = 0; i < temp.Count; i++)
         {
-            answer[i] = temp[i];
+            bool isPrime = true;
+            for (int j = 2; j <= temp[i]/2; j++)
+            {
+                if (temp[i] % j == 0)
+                {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if(isPrime)
+                answer++;
         }
-        
+
         return answer;
     }
 }

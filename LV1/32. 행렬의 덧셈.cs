@@ -1,38 +1,17 @@
-using System;
-using System.Collections.Generic;
-
 public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
-        List<int> temp = new List<int>();
-            
-        for (int i= 0; i < numbers.Length; i++)
+    public int[,] solution(int[,] arr1, int[,] arr2) {
+        int[,] answer = new int[,] { { } };
+
+        answer = new int[arr1.GetLength(0), arr1.GetLength(1)];
+
+        for(int y = 0; y < arr1.GetLength(0); y++)
         {
-            for (int j = numbers.Length-1; i < j; j--)
+            for (int x = 0; x < arr1.GetLength(1); x++)
             {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
-
-                for(int k = 0; k < temp.Count; k++)
-                {
-                    if (temp[k] == sum)
-                        find = true;
-                }
-
-                if(!find)
-                    temp.Add(sum);
-
+                answer[y,x] = arr1[y, x] + arr2[y, x];
             }
         }
-        temp.Sort();
 
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
-        {
-            answer[i] = temp[i];
-        }
-        
         return answer;
     }
 }

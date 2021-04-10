@@ -1,38 +1,40 @@
-using System;
-using System.Collections.Generic;
-
 public class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = new int[] {};
-        
-        List<int> temp = new List<int>();
-            
-        for (int i= 0; i < numbers.Length; i++)
+    public int solution(long num) {
+        int count = 0;
+        if (num == 1)
+            return 0;
+        while(count <= 500)
         {
-            for (int j = numbers.Length-1; i < j; j--)
+            if (num % 2 == 0)
             {
-                int sum = numbers[i] + numbers[j];
-                bool find = false;
-
-                for(int k = 0; k < temp.Count; k++)
-                {
-                    if (temp[k] == sum)
-                        find = true;
-                }
-
-                if(!find)
-                    temp.Add(sum);
-
+                num /= 2;
+            }
+            else
+            {
+                num = (num*3)+1;
+            }
+            count++;
+            if (num == 1)
+            {
+                break;
             }
         }
-        temp.Sort();
+        count = count <= 500 ? count : -1;
+        // Console.WriteLine(count <= 500 ? count : -1);
+        return count;
+    }
+}
 
-        answer = new int[temp.Count];
-        for(int i = 0; i < temp.Count; i++)
+좋은 답안
+
+public class Solution {
+    public int solution(int num) {
+        long lNum = num;
+        for (int i = 0; i < 500; i++)
         {
-            answer[i] = temp[i];
+            if (lNum == 1) return i;
+            lNum = lNum % 2 == 0 ? lNum / 2 : lNum * 3 + 1;                        
         }
-        
-        return answer;
+        return -1;        
     }
 }
